@@ -1,0 +1,2 @@
+# config.yaml
+ui_version: "new"  # Change to "legacy" to load the old interface

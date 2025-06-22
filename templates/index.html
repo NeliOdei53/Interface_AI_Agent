@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALT Linux AI Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>ALT Linux AI Assistant</h1>
+            <div class="header-controls">
+                {% if ui_version == 'new' %}
+                <div class="reasoning-toggle-container">
+                    <span id="reasoningToggleLabel">Reasoning: OFF</span>
+                    <label class="switch">
+                        <input type="checkbox" id="reasoningToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                {% endif %}
+                <span class="theme-icon">🌙</span>
+            </div>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <!-- Сообщения будут добавляться сюда -->
+        </div>
+        <div id="predefined-questions-popup" class="predefined-questions-popup hidden">
+            <h4>Выберите вопрос:</h4>
+            <div id="predefined-questions-list">
+                <!-- Кнопки с вопросами будут здесь -->
+            </div>
+            <button id="close-popup-btn" class="popup-close-btn">Закрыть</button>
+        </div>
+        <div class="chat-input-area">
+            <button id="show-predefined-btn" title="Показать готовые вопросы">💬</button>
+            <textarea id="userInput" placeholder="Спросите что-нибудь..." rows="1"></textarea>
+            <button id="sendButton" title="Отправить">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                    <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
