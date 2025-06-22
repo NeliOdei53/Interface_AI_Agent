@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <!-- DEBUG: Value of ui_version received by template: '{{ ui_version }}' -->
+    <!-- DEBUG: Type of ui_version received by template: '{{ ui_version.__class__.__name__ }}' -->
+
     <div class="chat-container">
         <div class="chat-header">
             <h1>ALT Linux AI Assistant</h1>
             <div class="header-controls">
+                <!-- DEBUG: Checking condition: (ui_version == 'new') -->
                 {% if ui_version == 'new' %}
                 <div class="reasoning-toggle-container">
                     <span id="reasoningToggleLabel">Reasoning: OFF</span>
