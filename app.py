@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from assistant import AIAssistant # Импортируем наш класс ассистента
 import yaml
 import os
+import markdown
 
 # --- Configuration Loading Function ---
 def load_app_configuration():
@@ -74,11 +75,10 @@ def ask_assistant():
     print(f"Flask App: Получен вопрос от пользователя: '{user_question}'")
     last_user_question = user_question # Сохраняем вопрос
 
-    # Вызываем метод invoke нашего ассистента
     assistant_response_internal = ai_assistant.invoke(user_question)
-    print(f"Flask App: Внутренний ответ от ассистента: '{assistant_response_internal}'") # для отладки
+    print(f"Flask App: Внутренний ответ от ассистента (Markdown): '{assistant_response_internal}'") # для отладки
     
-    response_to_user = assistant_response_internal
+    response_to_user = markdown.markdown(assistant_response_internal, extensions=['fenced_code'])
 
     return jsonify({'answer': response_to_user, 'received_question': user_question})
 

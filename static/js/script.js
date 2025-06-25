@@ -90,6 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.style.height = initialTextareaHeightCss; 
         setTextareaHeight();
 
+        // <-- ИЗМЕНЕНО: Логика для добавления флага /no_think -->
+        let questionToSend = trimmedQuestion;
+        const reasoningToggle = document.getElementById('reasoningToggle');
+
+        // Проверяем, существует ли переключатель и выключен ли он (unchecked)
+        if (reasoningToggle && !reasoningToggle.checked) {
+            questionToSend += " /no_think";
+        }
+        // <-- КОНЕЦ ИЗМЕНЕНИЙ -->
+
         const processingMessageText = "Ваш вопрос обрабатывается...";
         const tempAssistantMessageDiv = document.createElement('div');
         tempAssistantMessageDiv.classList.add('message', 'assistant', 'processing-message');
@@ -102,10 +112,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         try {
+            console.log("Отправка на сервер:", questionToSend); // Для отладки
             const response = await fetch('/ask', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ question: trimmedQuestion }),
+                // <-- ИЗМЕНЕНО: Отправляем модифицированный вопрос -->
+                body: JSON.stringify({ question: questionToSend }),
             });
 
             const processingMsgElement = chatMessages.querySelector('.processing-message');

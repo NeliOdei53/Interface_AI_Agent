@@ -151,14 +151,59 @@ body {
 .message-content { 
     padding: 10px 15px;
     border-radius: 18px;
-    max-width: 75%; /* Уменьшил немного, чтобы аватар не сильно сдвигал */
     line-height: 1.5; 
     box-shadow: 0 2px 4px rgba(0,0,0,0.15); 
-    
     word-wrap: break-word;    
     overflow-wrap: break-word; 
     white-space: pre-wrap;     
 }
+
+/* <-- ДОБАВЛЕНЫ СТИЛИ ДЛЯ MARKDOWN --> */
+.message-content p {
+    margin: 0 0 10px 0;
+}
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+.message-content ul, .message-content ol {
+    padding-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.message-content li {
+    margin-bottom: 5px;
+}
+.message-content strong {
+    font-weight: 600;
+}
+.message-content em {
+    font-style: italic;
+}
+.message-content pre {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    padding: 12px;
+    border-radius: 6px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+    font-size: 0.9em;
+    overflow-x: auto;
+    white-space: pre;
+    word-wrap: normal;
+    margin: 10px 0;
+}
+.message-content pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+    border-radius: 0;
+    white-space: inherit;
+    display: inline; /* Сбрасываем display: inline-block */
+    max-width: none;
+    overflow-x: visible;
+    word-break: normal;
+}
+/* <-- КОНЕЦ ДОБАВЛЕННЫХ СТИЛЕЙ --> */
 
 .message.user .message-content { 
     background-color: var(--user-msg-bg);
@@ -370,6 +415,12 @@ body.light-theme-active {
 }
 
 .chat-container.light-theme .message-content code {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+}
+
+/* <-- ДОБАВЛЕНО: Стили для Markdown в светлой теме --> */
+.chat-container.light-theme .message-content pre {
     background-color: var(--code-bg);
     color: var(--code-text);
 }
